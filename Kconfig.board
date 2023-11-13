@@ -1,0 +1,8 @@
+# PyCubed V5 board configuration
+
+# Copyright (c) 2020 Google LLC.
+# SPDX-License-Identifier: Apache-2.0
+
+config PYCUBED_V5
+	bool "Pycubed V5"
+	depends on SOC_PART_NUMBER_SAMD51J19A

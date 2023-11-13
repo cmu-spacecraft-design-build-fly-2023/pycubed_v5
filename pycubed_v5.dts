@@ -1,0 +1,100 @@
+/*
+ * Copyright (c) 2020 Google LLC.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+#include <atmel/samd5xx19.dtsi>
+#include "pycubed_v5-pinctrl.dtsi"
+
+/ {
+	model = "PyCubed V5";
+	compatible = "pcyubed,pycubed-v5";
+
+	chosen {
+		zephyr,console = &cdc_acm_uart0;
+		zephyr,shell-uart = &cdc_acm_uart0;
+		zephyr,uart-mcumgr = &cdc_acm_uart0;
+		zephyr,bt-mon-uart = &cdc_acm_uart0;
+		zephyr,bt-c2h-uart = &cdc_acm_uart0;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &code_partition;
+	};
+};
+
+&cpu0 {
+	clock-frequency = <120000000>;
+};
+
+// &sercom5 {
+// 	status = "okay";
+// 	compatible = "atmel,sam0-uart";
+// 	current-speed = <115200>;
+// 	rxpo = <1>;
+// 	txpo = <0>;
+
+// 	pinctrl-0 = <&sercom5_uart_default>;
+// 	pinctrl-names = "default";
+// };
+
+// &sercom2 {
+// 	status = "okay";
+// 	compatible = "atmel,sam0-spi";
+// 	dipo = <3>;
+// 	dopo = <0>;
+
+// 	#address-cells = <1>;
+// 	#size-cells = <0>;
+
+// 	pinctrl-0 = <&sercom2_spi_default>;
+// 	pinctrl-names = "default";
+// };
+
+
+zephyr_udc0: &usb0 {
+	status = "okay";
+
+	pinctrl-0 = <&usb_dc_default>;
+	pinctrl-names = "default";
+
+	cdc_acm_uart0: cdc_acm_uart0 {
+    	compatible = "zephyr,cdc-acm-uart";
+        label = "CDC_ACM_0";
+    };
+};
+
+&dmac {
+	status = "okay";
+};
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "uf2";
+			reg = <0x00000000 DT_SIZE_K(16)>;
+			read-only;
+		};
+
+		code_partition: partition@4000 {
+			label = "code";
+			reg = <0x4000 DT_SIZE_K(512-16-16)>;
+			read-only;
+		};
+
+		/*
+		 * The final 16 KiB is reserved for the application.
+		 * Storage partition will be used by FCB/LittleFS/NVS
+		 * if enabled.
+		 */
+		storage_partition: partition@7c000 {
+			label = "storage";
+			reg = <0x7c000 DT_SIZE_K(16)>;
+		};
+	};
+};

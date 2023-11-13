@@ -1,0 +1,20 @@
+identifier: pycubed_v5
+name: PyCubed V5
+type: mcu
+arch: arm
+ram: 192
+flash: 512
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+supported:
+  - dma
+  - gpio
+  - hwinfo
+  - pwm
+  - spi
+  - uart
+  - usb_device
+  - watchdog
+vendor: PyCubed
