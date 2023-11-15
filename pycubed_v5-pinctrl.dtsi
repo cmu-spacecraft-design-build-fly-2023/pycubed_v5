@@ -6,27 +6,27 @@
 #include <dt-bindings/pinctrl/same51j-pinctrl.h>
 
 &pinctrl {
-	// i2c1_default: i2c1_default {
-	// 	group1 {
-	// 		pinmux = <PB12C_SERCOM4_PAD0>,
-	// 			<PB13C_SERCOM4_PAD1>;
-	// 	};
-	// };
+	i2c1_default: i2c1_default {
+		group1 {
+			pinmux = <PB12C_SERCOM4_PAD0>,
+				<PB13C_SERCOM4_PAD1>;
+		};
+	};
 
-	// spi_default: spi_default {
-	// 	group1 {
-	// 		pinmux = <PA12C_SERCOM2_PAD0>,
-	// 			 <PA13C_SERCOM2_PAD1>,
-	// 			 <PA14C_SERCOM2_PAD2>;
-	// 	};
-	// };
+	spi_default: spi_default {
+		group1 {
+			pinmux = <PA12C_SERCOM2_PAD0>,
+				 <PA13C_SERCOM2_PAD1>,
+				 <PA14C_SERCOM2_PAD2>;
+		};
+	};
 
-	// gps_uart_default: gps_uart_default {
-	// 	group1 {
-	// 		pinmux = <PB2D_SERCOM5_PAD0>,
-	// 			 <PB3D_SERCOM5_PAD1>;
-	// 	};
-	// };
+	gps_uart_default: gps_uart_default {
+		group1 {
+			pinmux = <PB2D_SERCOM5_PAD0>,
+				 <PB3D_SERCOM5_PAD1>;
+		};
+	};
 
 	usb_dc_default: usb_dc_default {
 		group1 {
